@@ -37,6 +37,7 @@ public class ScriptBase {
         DriverFactory.getInstance().getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         DriverFactory.getInstance().getDriver().manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
         DriverFactory.getInstance().getDriver().manage().window().maximize();
+        DriverFactory.getInstance().getDriver().manage().deleteAllCookies();
         havenLifeInsurance = ApplicationFactory.getInstance().getApplicationController();
 
         reporter.setReportPath(System.getProperty("user.dir") + "/test-output/htmlReport/");
@@ -48,8 +49,8 @@ public class ScriptBase {
 
     @AfterMethod
     public void teardown(){
-        //DriverFactory.getInstance().closeDriver();
-        //DriverFactory.getInstance().quitDriver();
+        DriverFactory.getInstance().closeDriver();
+        DriverFactory.getInstance().quitDriver();
         //ApplicationFactory.getInstance().remove();
         //saksFifth = null;
 
