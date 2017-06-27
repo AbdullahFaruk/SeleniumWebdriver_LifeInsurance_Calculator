@@ -1,14 +1,14 @@
-package TestScenarioPage;
+package TestCases;
 
 import baseFramework.ScriptBase;
 import org.testng.annotations.Test;
 
 /**
- * Created by Abdullah on 6/25/17.
+ * Created by Abdullah on 6/27/17.
  */
-public class Scen01 extends ScriptBase{
+public class Scen_01 extends ScriptBase {
 
-    @Test (enabled = true)
+    @Test(enabled = true)
     public void testInsuranceCalculator(){
         havenLifeInsurance.insuranceCalculator().naviageteToHomepage();
         havenLifeInsurance.insuranceCalculator().InputDateOfBirth("01/01/1967");
@@ -27,4 +27,5 @@ public class Scen01 extends ScriptBase{
         havenLifeInsurance.insuranceCalculator().validatePolicy();
 
     }
+
 }
