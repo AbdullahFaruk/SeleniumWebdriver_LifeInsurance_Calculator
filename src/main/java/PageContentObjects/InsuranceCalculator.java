@@ -10,7 +10,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.testng.Assert;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by shawon on 6/25/17.
@@ -20,53 +25,6 @@ public class InsuranceCalculator extends PageUtils {
     private static ExtentManager extentManager = ExtentManager.getInstance(); //extend manager
     protected ReporterService reporter = ReporterService.reporter();
 
-
-
-   /* driver.findElement(By.xpath("//input[@placeholder='mm/dd/yyyy']")).sendKeys("01/01/1967");
-
-        driver.findElement(By.xpath("//input[@id='primarySalary']")).sendKeys("85000");
-
-        driver.findElement(By.xpath("//input[@id='primaryZIP']")).sendKeys("11435");
-
-        driver.findElement(By.xpath("//select[@id='primaryGender']")).sendKeys("Male");
-
-        List<WebElement> myObj = driver.findElements(By.xpath("//input[@name='family']"));
-        System.out.println("Total selected values are " + myObj.size());
-        myObj.get(3).click();
-
-        driver.findElement(By.xpath("//input[@id='alternateAge']")).sendKeys("45");
-
-        driver.findElement(By.xpath("//select[@id='spouseWorks']")).sendKeys("Yes");
-
-        driver.findElement(By.xpath("//input[@id='noOfKids']")).clear();
-
-        driver.findElement(By.xpath("//input[@id='noOfKids']")).sendKeys("1");
-
-        driver.findElement(By.xpath("//input[@id='__id__']")).clear();
-
-        driver.findElement(By.xpath("//input[@id='__id__']")).sendKeys("18");
-
-        driver.findElement(By.xpath("//select[@id='sendKidsToCollege']")).sendKeys("not paying for college");
-
-    List<WebElement> myCheckBox = driver.findElements(By.xpath("//input[@type='checkbox']"));
-        System.out.println(myCheckBox);
-        myCheckBox.get(2).click();
-
-        driver.findElement(By.xpath("//input[@id='mortgageLoan']")).sendKeys("55000");
-
-        driver.findElement(By.xpath("//button[@id='viewmyquotes']")).click();
-
-        Thread.sleep(5000L);
-
-        driver.findElement(By.xpath("./*//*[@id='healthsubmit']")).click();
-
-    WebElement myvalelem = driver.findElement(By.cssSelector("div[class='panel panel-default selected-panel']"));
-        System.out.println(myvalelem.getText());
-
-        org.junit.Assert.assertEquals("GOLD $500,000 | 20 YEARS", "GOLD $500,000 | 20 YEARS");
-*/
-
-
     /**
      * This is Constructor
      * */
@@ -74,6 +32,23 @@ public class InsuranceCalculator extends PageUtils {
     public InsuranceCalculator() {
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 10), this);
         //PageFactory.initElements(driver, this);
+    }
+
+    /**
+     * Navigate to homepage
+     * */
+    public void naviageteToHomepage(){
+        driver.navigate().to("https://havenlife.com/term-life-insurance-calculator.html");
+
+    }
+
+    public void naviagetePage(String url){
+        driver.navigate().to(url);
+    }
+
+    public void verifyHomePage(){
+        Assert.assertEquals("Haven Life", driver.getTitle());
+        extentManager.log("Haven Life" + driver.getTitle());
     }
 
     /**
@@ -185,31 +160,5 @@ public class InsuranceCalculator extends PageUtils {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Navigate to homepage
-     * */
-    public void naviageteToHomepage(){
-        driver.navigate().to("https://havenlife.com/term-life-insurance-calculator.html");
-    }
-
-    public void naviagetePage(String url){
-        driver.navigate().to(url);
-    }
-
-    public void verifyHomePage(){
-        Assert.assertEquals("Haven Life", driver.getTitle());
-        extentManager.log("Haven Life" + driver.getTitle());
-    }
 
 }
