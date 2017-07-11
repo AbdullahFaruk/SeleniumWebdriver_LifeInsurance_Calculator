@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestAll" parallel="classes" thread-count="1">
+
+    <test name="FireFoxTest">
+        <parameter name="browser" value="ff" />
+        <classes>
+            <class name="TestScenarioPage.Scen01" />
+        </classes>
+    </test>
+    <test name="ChromeTest">
+        <parameter name="browser" value="ch" />
+        <classes>
+            <class name="TestScenarioPage.Scen01" />
+        </classes>
+    </test>
+</suite>

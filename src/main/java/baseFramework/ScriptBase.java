@@ -5,10 +5,7 @@ import DriverUtils.DriverFactory;
 import com.paxovision.execution.reporter.listener.ReporterTestListener;
 import com.paxovision.execution.reporter.service.ReporterService;
 import extentReport.ExtentTestNGITestListener;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,12 +28,15 @@ public class ScriptBase {
 
     }
 
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setup(){
+    public void setup(@Optional("ch") String browser){
+
+        System.out.println("Browser: " + browser);
+        System.setProperty("Browser",browser);
 
         DriverFactory.getInstance().getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         DriverFactory.getInstance().getDriver().manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
-        DriverFactory.getInstance().getDriver().manage().window().maximize();
         DriverFactory.getInstance().getDriver().manage().deleteAllCookies();
         havenLifeInsurance = ApplicationFactory.getInstance().getApplicationController();
 
@@ -50,9 +50,6 @@ public class ScriptBase {
     @AfterMethod
     public void teardown(){
         DriverFactory.getInstance().closeDriver();
-        DriverFactory.getInstance().quitDriver();
-        //ApplicationFactory.getInstance().remove();
-        //saksFifth = null;
-
+        //DriverFactory.getInstance().quitDriver();
     }
 }
