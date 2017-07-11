@@ -7,7 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by shawon on 6/25/17.
@@ -71,6 +75,21 @@ public class PageUtils {
                     element, "");
             delayFor(500);
         }
+    }
+
+    public String loadDataFromPropertiesFile(String string) {
+        final String file = System.getProperty("user.dir") + "/src/main/resources/configuration.properties";
+        Properties prop = new Properties();
+        InputStream input;
+        try {
+            input = new FileInputStream(file);
+            // load a properties file
+            prop.load(input);
+            return prop.getProperty(string);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return "";
     }
 
 
