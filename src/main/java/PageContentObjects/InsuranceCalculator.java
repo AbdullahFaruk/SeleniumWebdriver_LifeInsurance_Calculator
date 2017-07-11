@@ -38,7 +38,7 @@ public class InsuranceCalculator extends PageUtils {
      * Navigate to homepage
      * */
     public void naviageteToHomepage(){
-        driver.navigate().to("https://havenlife.com/term-life-insurance-calculator.html");
+        driver.navigate().to(loadDataFromPropertiesFile("url"));
 
     }
 
