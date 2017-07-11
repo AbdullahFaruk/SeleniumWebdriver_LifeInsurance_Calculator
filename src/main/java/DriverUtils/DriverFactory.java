@@ -1,8 +1,15 @@
 package DriverUtils;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by Abdullah on 6/25/17.
@@ -27,27 +34,32 @@ public class DriverFactory {
         protected WebDriver initialValue()
         {
 
-            //FirefoxDriverManager.getInstance().setup();
+            String browser = System.getProperty("Browser");
 
-            //ProfilesIni profiles = new ProfilesIni();
-            //FirefoxProfile seleniumProfile = profiles.getProfile("Selenium");
-            //return new FirefoxDriver();
-
-            ChromeDriverManager.getInstance().setup();
-            return new ChromeDriver();
-
-            /*DesiredCapabilities caps = DesiredCapabilities.chrome();
-            caps.setCapability("browser", "Chrome");
-            caps.setCapability("browser_version", "58.0");
-            caps.setCapability("os", "Windows");
-            caps.setCapability("os_version", "7");
-            caps.setCapability("resolution", "1920x1080");
-            try {
-                return new RemoteWebDriver(new URL(BROWSER_STACK_REMOTE_URL), caps);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+            if(browser.contentEquals("ch")) {
+                ChromeDriverManager.getInstance().setup();
+                return new ChromeDriver();
             }
-            return null;*/
+            else if(browser.contentEquals("ff")){
+                FirefoxDriverManager.getInstance().setup();
+                return new FirefoxDriver();
+            }
+            /*else if(browser.contentEquals("rch")){
+                DesiredCapabilities caps = DesiredCapabilities.chrome();
+                caps.setCapability("browser", "Chrome");
+                caps.setCapability("browser_version", "58.0");
+                caps.setCapability("os", "Windows");
+                caps.setCapability("os_version", "7");
+                caps.setCapability("resolution", "1920x1080");
+                try {
+                    return new RemoteWebDriver(new URL(BROWSER_STACK_REMOTE_URL), caps);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }*/
+
+            {
+                return null;
+            }
         }
     };
     public WebDriver getDriver() // call this method to get the driverThreadLocal object and launch the browser
