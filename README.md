@@ -1,6 +1,8 @@
 # HavenLifeInsuranceCalculator
 Haven Life Insurance Calculator
+## This is a Selenium Webdriver based Automation Framework
 
+### How to use this Framework?
 1. Clone the Repo with using the ssh: git clone git@github.com:AbdullahFaruk/HavenLifeInsuranceCalculator.git
 2. Use intellij
 3. Run maven life cycle after getting the project to make sure no compilation errors are there
